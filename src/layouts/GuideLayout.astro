@@ -1,0 +1,102 @@
+---
+import { steps, hrefFor, indexOfSlug, type GuideStep } from '../data/steps';
+import '../styles/github-markdown.css';
+import '../styles/guide.css';
+
+interface Props {
+  step: GuideStep;
+}
+
+const { step } = Astro.props;
+const currentIndex = indexOfSlug(step.slug);
+const prev = currentIndex > 0 ? steps[currentIndex - 1] : null;
+const next = currentIndex < steps.length - 1 ? steps[currentIndex + 1] : null;
+const canonical = new URL(hrefFor(step.slug), Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{step.title} | D&amp;D in Thailand</title>
+    <meta name="description" content={step.description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={`${step.title} | D&D in Thailand`} />
+    <meta property="og:description" content={step.description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="titlebar">
+      <a href="/">
+        <span class="prefix">D&amp;D in Thailand&nbsp;|&nbsp;</span>Find a table
+      </a>
+    </div>
+
+    <nav class="sidebar" aria-label="Guide steps">
+      <ol class="stepper">
+        {
+          steps.map((item, i) => (
+            <li class:list={['stepper-item', { active: i === currentIndex }]}>
+              <a href={hrefFor(item.slug)}>{item.nav}</a>
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+
+    <div class="content-wrapper">
+      <article class="content markdown-body">
+        <h1>{step.title}</h1>
+        <slot />
+      </article>
+    </div>
+
+    <div class="controls-wrapper">
+      <a
+        class:list={['button', 'secondary', { hide: !prev }]}
+        href={prev ? hrefFor(prev.slug) : '#'}
+        aria-label="Previous page"
+        aria-hidden={!prev}
+        tabindex={prev ? 0 : -1}
+      >
+        Back
+      </a>
+      <div class="spacer"></div>
+      <a
+        class:list={['button', 'primary', { hide: !next }]}
+        href={next ? hrefFor(next.slug) : '#'}
+        aria-label="Next page"
+        aria-hidden={!next}
+        tabindex={next ? 0 : -1}
+      >
+        Next
+      </a>
+    </div>
+
+    <script>
+      document.querySelectorAll('a').forEach((elem) => {
+        elem.addEventListener('click', function (e) {
+          if (location.host !== this.host) {
+            e.preventDefault();
+            const newTab = window.open();
+            if (newTab) {
+              newTab.opener = null;
+              newTab.location = this.href;
+            }
+            return false;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

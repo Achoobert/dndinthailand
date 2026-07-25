@@ -1,204 +1,44 @@
 ---
-import '../styles/global.css';
+import GuideLayout from '../layouts/GuideLayout.astro';
+import { steps } from '../data/steps';
 
-const title = 'D&D in Thailand — Find a table, book a game';
-const description =
-  'How to find free Dungeons & Dragons groups in Thailand, plus in-person games at Game Tree Cafe in Chiang Mai.';
-const siteUrl = 'https://dndinthailand.com';
-const bookUrl = 'https://calendar.app.google/zf4wG5rG7fxThcgZ8';
-const gmUrl = 'https://startplaying.games/gm/achoobert';
-const cafeUrl = 'https://gametree.cafe/';
-const cafeFb = 'https://www.facebook.com/GameTreeCafe';
-
-const groups = [
-  {
-    name: 'DnD Thailand',
-    href: 'https://www.facebook.com/groups/dndthailand/',
-    blurb: 'Nationwide Facebook group for finding players and DMs across Thailand.',
-  },
-  {
-    name: 'Thailand D&D / TTRPG group',
-    href: 'https://www.facebook.com/groups/2026871404625401/',
-    blurb: 'Another free group finder — post where you are and what system you want to play.',
-  },
-  {
-    name: 'Thailand tabletop group',
-    href: 'https://www.facebook.com/groups/317150018132305/',
-    blurb: 'Community board for coordinating games and meeting other players.',
-  },
-];
+const step = steps[0];
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={siteUrl} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={siteUrl} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:locale" content="en_US" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&display=swap"
-      rel="stylesheet"
-    />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: 'D&D in Thailand',
-      url: siteUrl,
-      description,
-    })} />
-  </head>
-  <body>
-    <a class="skip-link" href="#guide">Skip to guide</a>
+<GuideLayout step={step}>
+  <h2>Introduction</h2>
 
-    <header class="hero">
-      <div class="hero__media" aria-hidden="true"></div>
-      <div class="hero__inner">
-        <p class="brand">D&amp;D in <span>Thailand</span></p>
-        <h1 class="hero__lede">Find your table.</h1>
-        <p class="hero__support">
-          Free group finders first. When you want a seat ready for you, book an in-person game in Chiang Mai.
-        </p>
-        <div class="cta-row">
-          <a class="btn btn--primary" href="#book">Schedule a game</a>
-          <a class="btn btn--ghost" href="#groups">Free Facebook groups</a>
-        </div>
-      </div>
-    </header>
+  <p>
+    Thailand has a growing tabletop community — locals, expats, and travelers who want a night of
+    dice and story. Most pickup games organize on Facebook. English and Thai tables both exist;
+    Chiang Mai and Bangkok are the densest hubs, but posts from other cities get replies too.
+  </p>
 
-    <main id="guide" class="guide">
-      <section class="section reveal" id="scene" aria-labelledby="scene-title">
-        <p class="section__kicker">The scene</p>
-        <h2 class="section__title" id="scene-title">Playing D&amp;D in Thailand</h2>
-        <p class="section__lead">
-          Thailand has a growing tabletop community — locals, expats, and travelers who want a night of dice and story.
-        </p>
-        <p>
-          Most pickup games organize on Facebook. English and Thai tables both exist; Chiang Mai and Bangkok are the
-          densest hubs, but posts from other cities get replies too. You do not need a paid booking to play. Start with
-          the free groups below, introduce yourself, and ask for an open seat.
-        </p>
-        <p>
-          If you prefer a hosted session with a prepared GM, skip ahead to book at Game Tree Cafe in Chiang Mai —
-          same guide, your choice.
-        </p>
-      </section>
+  <p>
+    You do not need a paid booking to play. This guide starts with free group finders, then covers
+    in-person play at Game Tree Cafe in Chiang Mai, and ends with how to schedule a hosted seat if
+    you want a table waiting for you.
+  </p>
 
-      <section class="section section--wide reveal" id="groups" aria-labelledby="groups-title">
-        <p class="section__kicker">Free</p>
-        <h2 class="section__title" id="groups-title">Group finders on Facebook</h2>
-        <p class="section__lead">
-          These groups are the usual way people find free games. Join, read the pinned rules, then post where you are and
-          what you want to play.
-        </p>
-        <ul class="groups">
-          {
-            groups.map((g) => (
-              <li>
-                <a href={g.href} rel="noopener noreferrer" target="_blank">
-                  {g.name}
-                </a>
-                <p>{g.blurb}</p>
-              </li>
-            ))
-          }
-        </ul>
-        <ul class="tips">
-          <li>Say city (or neighborhood), system (5e, Pathfinder, etc.), and days you can play.</li>
-          <li>Offer to learn a new system — tables fill faster when you are flexible.</li>
-          <li>Be clear if you are a beginner; many groups welcome new players.</li>
-        </ul>
-      </section>
+  <h2>What this guide covers</h2>
 
-      <section class="section reveal" id="cafe" aria-labelledby="cafe-title">
-        <p class="section__kicker">Chiang Mai</p>
-        <h2 class="section__title" id="cafe-title">In person at Game Tree Cafe</h2>
-        <p class="section__lead">
-          Want a table without coordinating a dozen Facebook threads? Games are hosted at Game Tree Cafe — coffee,
-          snacks, and a board-game hangout in Suthep.
-        </p>
-        <p>
-          Address: 200/14, B-Avenue, M.1, Suthep Rd., Chiang Mai 50200. Check their site for directions and the cafe
-          side of the house; sessions use their open tables when you book a seat with the GM.
-        </p>
-        <div class="place-links">
-          <a href={cafeUrl} rel="noopener noreferrer" target="_blank">gametree.cafe</a>
-          <a href={cafeFb} rel="noopener noreferrer" target="_blank">Facebook page</a>
-        </div>
-      </section>
+  <ul>
+    <li>Free Facebook groups to find players and DMs</li>
+    <li>Playing in person at Game Tree Cafe (Chiang Mai)</li>
+    <li>How to book an open session with a prepared GM</li>
+  </ul>
 
-      <section class="section book reveal" id="book" aria-labelledby="book-title">
-        <div class="book__panel">
-          <p class="section__kicker">Call to action</p>
-          <h2 class="section__title" id="book-title">Schedule a game</h2>
-          <p class="section__lead">
-            Pick an open slot on the calendar. You will play with GM Isaac “Achoobert” — cinematic, character-driven
-            5e and other systems, beginner-friendly.
-          </p>
-          <ul class="book__meta">
-            <li>
-              <strong>Availability</strong>
-              <a href={bookUrl} rel="noopener noreferrer" target="_blank">Open booking calendar</a>
-            </li>
-            <li>
-              <strong>Game Master</strong>
-              <a href={gmUrl} rel="noopener noreferrer" target="_blank">startplaying.games/gm/achoobert</a>
-            </li>
-            <li>
-              <strong>Venue</strong>
-              Game Tree Cafe, Chiang Mai
-            </li>
-          </ul>
-          <div class="cta-row">
-            <a class="btn btn--primary" href={bookUrl} rel="noopener noreferrer" target="_blank">
-              Book an open time
-            </a>
-            <a class="btn btn--ghost" href={gmUrl} rel="noopener noreferrer" target="_blank">
-              Meet the GM
-            </a>
-          </div>
-        </div>
-      </section>
-    </main>
+  <blockquote>
+    <p>
+      Free groups first. Hosted games are optional — use them when you want less coordination and a
+      seat ready on a known night.
+    </p>
+  </blockquote>
 
-    <footer class="site-footer">
-      <p>
-        Built to share useful info about playing D&amp;D in Thailand. Free groups first;
-        <a href="#book">book a hosted game</a> when you want a seat waiting.
-      </p>
-    </footer>
+  <h2>Who this is for</h2>
 
-    <script>
-      const nodes = document.querySelectorAll('.reveal');
-      if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver(
-          (entries) => {
-            for (const entry of entries) {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('is-in');
-                io.unobserve(entry.target);
-              }
-            }
-          },
-          { rootMargin: '0px 0px -8% 0px', threshold: 0.12 },
-        );
-        nodes.forEach((el) => io.observe(el));
-      } else {
-        nodes.forEach((el) => el.classList.add('is-in'));
-      }
-    </script>
-  </body>
-</html>
+  <p>
+    Beginners, tourists between flights, and regulars looking for a new table. If you already know a
+    local group, great — if not, the next step is where most people start.
+  </p>
+</GuideLayout>

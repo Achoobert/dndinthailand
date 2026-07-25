@@ -1,0 +1,43 @@
+---
+import GuideLayout from '../layouts/GuideLayout.astro';
+import { steps } from '../data/steps';
+
+const step = steps[3];
+const bookUrl = 'https://calendar.app.google/zf4wG5rG7fxThcgZ8';
+const gmUrl = 'https://startplaying.games/gm/achoobert';
+---
+
+<GuideLayout step={step}>
+  <h2>Schedule a game</h2>
+
+  <p>
+    Pick an open slot on the calendar. You will play with GM Isaac “Achoobert” — cinematic,
+    character-driven games (5e and other systems), beginner-friendly, based in Asia/Bangkok time.
+  </p>
+
+  <h2>Booking</h2>
+
+  <ul>
+    <li>
+      Availability:
+      <a href={bookUrl} rel="noopener noreferrer">Open booking calendar</a>
+    </li>
+    <li>
+      Game Master:
+      <a href={gmUrl} rel="noopener noreferrer">startplaying.games/gm/achoobert</a>
+    </li>
+    <li>Venue: Game Tree Cafe, Chiang Mai</li>
+  </ul>
+
+  <h2>Ready?</h2>
+
+  <p>
+    <a class="button primary" href={bookUrl} rel="noopener noreferrer">Book an open time</a>
+  </p>
+
+  <p>
+    Still hunting a free pickup table? Go back to the
+    <a href="/groups/">Facebook groups</a> and introduce yourself — that is still the main free path
+    for most players in Thailand.
+  </p>
+</GuideLayout>

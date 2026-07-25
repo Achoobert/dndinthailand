@@ -1,0 +1,60 @@
+---
+import GuideLayout from '../layouts/GuideLayout.astro';
+import { steps } from '../data/steps';
+
+const step = steps[1];
+
+const groups = [
+  {
+    name: 'DnD Thailand',
+    href: 'https://www.facebook.com/groups/dndthailand/',
+    blurb: 'Nationwide Facebook group for finding players and DMs across Thailand.',
+  },
+  {
+    name: 'Thailand D&D / TTRPG group',
+    href: 'https://www.facebook.com/groups/2026871404625401/',
+    blurb: 'Another free group finder — post where you are and what system you want to play.',
+  },
+  {
+    name: 'Thailand tabletop group',
+    href: 'https://www.facebook.com/groups/317150018132305/',
+    blurb: 'Community board for coordinating games and meeting other players.',
+  },
+];
+---
+
+<GuideLayout step={step}>
+  <h2>Facebook group finders</h2>
+
+  <p>
+    These groups are the usual way people find free games. Join, read the pinned rules, then post
+    where you are and what you want to play.
+  </p>
+
+  <h2>Groups to join</h2>
+
+  <ul>
+    {
+      groups.map((g) => (
+        <li>
+          <p>
+            <a href={g.href} rel="noopener noreferrer">{g.name}</a> — {g.blurb}
+          </p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>How to post</h2>
+
+  <ul>
+    <li>Say city (or neighborhood), system (5e, Pathfinder, etc.), and days you can play.</li>
+    <li>Offer to learn a new system — tables fill faster when you are flexible.</li>
+    <li>Be clear if you are a beginner; many groups welcome new players.</li>
+  </ul>
+
+  <p>
+    Prefer a prepared table without coordinating a dozen threads? Continue to Game Tree Cafe, then
+    book an open time.
+  </p>
+</GuideLayout>

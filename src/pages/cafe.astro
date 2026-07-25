@@ -1,0 +1,41 @@
+---
+import GuideLayout from '../layouts/GuideLayout.astro';
+import { steps } from '../data/steps';
+
+const step = steps[2];
+---
+
+<GuideLayout step={step}>
+  <h2>Game Tree Cafe</h2>
+
+  <p>
+    Want a table without coordinating a dozen Facebook threads? Games are hosted at
+    <a href="https://gametree.cafe/" rel="noopener noreferrer">Game Tree Cafe</a> — coffee, snacks,
+    and a board-game hangout in Suthep, Chiang Mai.
+  </p>
+
+  <h2>How to find them</h2>
+
+  <p>
+    Address: 200/14, B-Avenue, M.1, Suthep Rd., Chiang Mai 50200. Their site walks through the
+    turn-off, parking, and shop row — useful the first time you visit.
+  </p>
+
+  <ul>
+    <li>
+      Website: <a href="https://gametree.cafe/" rel="noopener noreferrer">gametree.cafe</a>
+    </li>
+    <li>
+      Facebook:
+      <a href="https://www.facebook.com/GameTreeCafe" rel="noopener noreferrer">GameTreeCafe</a>
+    </li>
+  </ul>
+
+  <h2>What to expect</h2>
+
+  <p>
+    Sessions use their open tables when you book a seat with the GM. Check the cafe for food and
+    drink while you play; treat it like a local hangout that happens to have room for a campaign
+    night.
+  </p>
+</GuideLayout>
